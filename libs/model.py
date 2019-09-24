@@ -33,11 +33,13 @@ class EncoderCNN(nn.Module):
 
     def forward(self, x):
         """return flattened features"""
+        batch_size = x.shape[0]
+
         x = self.conv(x)
         x = self.bn1(x)
         x = F.relu(x)
         x = self.avgpool(x)
-        x = x.squeeze()
+        x = x.view(batch_size, -1)
         x = self.linear(x)
         x = self.bn2(x)
         return x

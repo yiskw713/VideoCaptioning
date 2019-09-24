@@ -206,7 +206,7 @@ def main():
 
     val_loader = DataLoader(
         val_data,
-        batch_size=1,
+        batch_size=CONFIG.batch_size,
         shuffle=False,
         num_workers=CONFIG.num_workers,
         collate_fn=collate_fn
