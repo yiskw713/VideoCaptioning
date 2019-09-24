@@ -19,10 +19,10 @@ stddev: 0.01           # stddev of noise
 num_workers: 1
 max_epoch: 300
 
-optimizer: SGD
-scheduler: onplateau
+optimizer: Adam
+scheduler: None
 
-learning_rate: 0.003
+learning_rate: 0.001
 lr_patience: 10       # Patience of LR scheduler
 momentum: 0.9         # momentum of SGD
 dampening: 0.0        # dampening for momentum of SGD
