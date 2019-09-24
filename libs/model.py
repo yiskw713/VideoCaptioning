@@ -18,6 +18,19 @@ class EncoderCNN(nn.Module):
         self.linear = nn.Linear(in_channels, embed_size)
         self.bn2 = nn.BatchNorm1d(embed_size, momentum=0.01)
 
+        for m in self.modules():
+            if isinstance(m, nn.Conv3d):
+                nn.init.xavier_normal_(m.weight)
+                if m.bias is not None:
+                    nn.init.zeros_(m.bias.data)
+            elif isinstance(m, nn.Linear):
+                nn.init.xavier_uniform_(m.weight.data)
+                if m.bias is not None:
+                    nn.init.zeros_(m.bias.data)
+            elif isinstance(m, nn.BatchNorm2d):
+                m.weight.data.fill_(1)
+                m.bias.data.zero_()
+
     def forward(self, x):
         """return flattened features"""
         x = self.conv(x)
@@ -27,7 +40,6 @@ class EncoderCNN(nn.Module):
         x = x.squeeze()
         x = self.linear(x)
         x = self.bn2(x)
-        x = F.relu(x)
         return x
 
 
@@ -40,6 +52,26 @@ class DecoderRNN(nn.Module):
                             num_layers, batch_first=True)
         self.linear = nn.Linear(hidden_size, vocab_size)
         self.max_seg_length = max_seq_length
+
+        for m in self.modules():
+            if isinstance(m, nn.Linear):
+                nn.init.xavier_uniform_(m.weight.data)
+                if m.bias is not None:
+                    nn.init.zeros_(m.bias.data)
+            elif isinstance(m, nn.LSTM):
+                for param in m.parameters():
+                    if len(param.shape) >= 2:
+                        nn.init.xavier_uniform_(param.data)
+                    else:
+                        nn.init.zeros_(param.data)
+            elif isinstance(m, nn.LSTMCell):
+                for param in m.parameters():
+                    if len(param.shape) >= 2:
+                        nn.init.xavier_uniform_(param.data)
+                    else:
+                        nn.init.zeros_(param.data)
+            elif isinstance(m, nn.Embedding):
+                nn.init.uniform_(m.weight.data)
 
     def forward(self, features, captions, lengths):
         """Decode image feature vectors and generates captions."""
