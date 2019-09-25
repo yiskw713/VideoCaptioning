@@ -7,7 +7,7 @@
 You can download the required python packages by `pip install -r requirements.txt`  
 
 ## Dataset
-**MSR-VTTT**
+**MSR-VTT**
 
 You have to save features from 3DCNN which have spatial and temporal dimensions beforehand.  
 First,  Please download the dataset from the link on [this page](https://github.com/VisionLearningGroup/caption-guided-saliency/issues/6)  
