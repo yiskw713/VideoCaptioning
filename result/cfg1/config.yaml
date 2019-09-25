@@ -34,6 +34,7 @@ poly_power: 0.9       # for polunomial learning scheduler
 dataset: MSR-VTT
 dataset_dir: /media/cvrg/ssd2t2/msr-vtt/
 feature_dir: features/r50_k700_16f
+hdf5_dir: hdf5
 ann_file: videodatainfo_2017.json
 vocab_path: ./data/vocab.pkl
 

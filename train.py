@@ -123,12 +123,6 @@ def validate(val_loader, encoder, decoder, criterion, config, device):
 
             batch_size = features.shape[0]
 
-            # data augumentation
-            if config.add_noise:
-                noise = torch.normal(
-                    mean=0, std=config.stddev, size=features.shape)
-                features += noise
-
             # send to device
             features = features.to(device)
             captions = captions.to(device)

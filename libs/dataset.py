@@ -15,9 +15,10 @@ from torch.utils.data import Dataset
 class MSR_VTT_Features(Dataset):
     def __init__(
         self, dataset_dir, feature_dir, vocab, ann_file="videodatainfo_2017.json",
-        mode="train", align_size=(10, 7, 7)
+        hdf5_dir='hdf5', mode="train", align_size=(10, 7, 7)
     ):
         self.ft_dir = os.path.join(dataset_dir, feature_dir)
+        self.hdf5_dir = os.path.join(dataset_dir, hdf5_dir)
         self.vocab = vocab
 
         # load spacy

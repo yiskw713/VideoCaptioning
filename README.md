@@ -22,14 +22,15 @@ root/ ── libs/
       ├─ model/
       ├─ result/
       ├─ utils/
-      ├.gitignore
-      ├ README.md
-      ├ requirements.txt
-      ├ test.py
-      ├ train.py
-      └ hoge.py
+      ├─.gitignore
+      ├─ README.md
+      ├─ requirements.txt
+      ├─ test.py
+      ├─ train.py
+      └─ generate_cam.py
 
 dataset_dir/ ─── feature_dir/
+              ├─ hdf5_dir/ (video dir) 
               └─ anno_file (.json)
 ```
 

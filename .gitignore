@@ -7,3 +7,4 @@ __pycache__
 dataset
 events.out.tfevents.*
 ./dataset
+*.mp4
