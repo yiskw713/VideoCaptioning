@@ -184,8 +184,8 @@ def main():
             video = f['video']
             clip = []
             n_frames = len(video)
-            for i in range(n_frames):
-                img = Image.open(io.BytesIO(video[i]))
+            for j in range(n_frames):
+                img = Image.open(io.BytesIO(video[j]))
                 img = transforms.functional.to_tensor(img)
                 clip.append(img)
 
@@ -203,11 +203,11 @@ def main():
         if not os.path.exists(video_cam_dir):
             os.mkdir(video_cam_dir)
 
-        for i in range(n_frames):
-            heatmap = heatmaps[:, i]
+        for j in range(n_frames):
+            heatmap = heatmaps[:, j]
             save_image(
                 heatmap,
-                os.path.join(video_cam_dir, "cam{:06}.png".format(i))
+                os.path.join(video_cam_dir, "cam{:06}.png".format(j))
             )
 
     print('Done')
