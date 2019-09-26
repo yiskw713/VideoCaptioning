@@ -158,7 +158,7 @@ def main():
 
     # record saved videos
     records = set()
-    for i, sample in tqdm.tqdm(enumerate(loader), total=len(loader)):
+    for sample in tqdm.tqdm(loader, total=len(loader)):
         idx = sample['id'][0]
 
         # ignore videos whose cams are saved once
